@@ -53,19 +53,26 @@ body > div > div.right > div.messages {
 }
 
 body > div > div.right > div.messages > div {
-	background-color: lightblue; color: #000e12;
-	margin-bottom: 18px; padding: 8px 16px; display: inline-block;
+	position: relative;
+	background-color: #ececec; color: #000e12;
+	border: 1px solid #e4e4e4; font-weight: 400;
+	margin-bottom: 18px; padding: 8px 36px 12px 16px; display: inline-block;
 }
 
 body > div > div.right > div.messages > div > span {
-	font-size: 10px; font-weight: 600;
+	font-size: 8px; font-weight: 600;
+	position: absolute; right: 3px; bottom: 3px;
 }
 
 body > div > div.right > div.messages > div.my {
 	align-self: end;
+	border-top-left-radius: 10px;
+	border-bottom-left-radius: 10px;
 }
 body > div > div.right > div.messages > div.your {
 	align-self: start;
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
 }
 
 body > div > div.right > div.textfield {
