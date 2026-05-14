@@ -4162,7 +4162,7 @@ function adjustCSS( elem, prop, valueParts, tween ) {
 		// Halve the iteration target value to prevent interference from CSS upper bounds (gh-2144)
 		initial = initial / 2;
 
-		// Trust units reported by jQuery.css
+		// Trust units reported by jQuery.styles
 		unit = unit || initialInUnit[ 3 ];
 
 		// Iteratively approximate from a nonzero starting point
@@ -4207,7 +4207,7 @@ function adjustCSS( elem, prop, valueParts, tween ) {
 var rmsPrefix = /^-ms-/;
 
 // Convert dashed to camelCase, handle vendor prefixes.
-// Used by the css & effects modules.
+// Used by the styles & effects modules.
 // Support: IE <=9 - 11+
 // Microsoft forgot to hump their vendor prefix (trac-9572)
 function cssCamelCase( string ) {
@@ -5803,7 +5803,7 @@ function curCSS( elem, name, computed ) {
 
 	computed = computed || getStyles( elem );
 
-	// getPropertyValue is needed for `.css('--customProperty')` (gh-3144)
+	// getPropertyValue is needed for `.styles('--customProperty')` (gh-3144)
 	if ( computed ) {
 
 		// A fallback to direct property access is needed as `computed`, being
@@ -5813,10 +5813,10 @@ function curCSS( elem, name, computed ) {
 		// Support: IE <=9 - 11+
 		// IE only supports `"float"` in `getPropertyValue`; in computed styles
 		// it's only available as `"cssFloat"`. We no longer modify properties
-		// sent to `.css()` apart from camelCasing, so we need to check both.
+		// sent to `.styles()` apart from camelCasing, so we need to check both.
 		// Normally, this would create difference in behavior: if
 		// `getPropertyValue` returns an empty string, the value returned
-		// by `.css()` would be `undefined`. This is usually the case for
+		// by `.styles()` would be `undefined`. This is usually the case for
 		// disconnected elements. However, in IE even disconnected elements
 		// with no styles return `"none"` for `getPropertyValue( "float" )`
 		ret = computed.getPropertyValue( name ) || computed[ name ];
@@ -6415,7 +6415,7 @@ Tween.propHooks = {
 				return tween.elem[ tween.prop ];
 			}
 
-			// Passing an empty string as a 3rd parameter to .css will automatically
+			// Passing an empty string as a 3rd parameter to .styles will automatically
 			// attempt a parseFloat and fallback to a string if the parse fails.
 			// Simple values such as "10px" are parsed to Float;
 			// complex values such as "rotate(1rad)" are returned as-is.
@@ -7937,7 +7937,7 @@ var
 	rprotocol = /^\/\//,
 
 	/* Prefilters
-	 * 1) They are useful to introduce custom dataTypes (see ajax/jsonp.js for an example)
+	 * 1) They are useful to introduce custom dataTypes (see ajax/jsonp.scripts for an example)
 	 * 2) These are called:
 	 *    - BEFORE asking for a transport
 	 *    - AFTER param serialization (s.data is a string if s.processData is true)

@@ -5,8 +5,8 @@ module.exports = {
 	},
 	files: [
 		"*.html",
-		"css/*.css",
-		"js/*.js"
+		"styles/*.styles",
+		"scripts/*.scripts"
 	],
 	watch: true, // Автоматически запускать отслеживание
 	open: true, // Не открывать браузер автоматически (поставьте true, если нужно)

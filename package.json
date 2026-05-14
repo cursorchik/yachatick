@@ -1,9 +1,15 @@
 {
   "scripts": {
+    "dev": "vite",
     "start": "browser-sync start --config bs-config.js"
   },
   "dependencies": {
-    "@types/jquery": "^4.0.0",
     "browser-sync": "^3.0.4"
+  },
+  "devDependencies": {
+    "@types/jquery": "^4.0.0",
+    "sass": "^1.99.0",
+    "typescript": "^6.0.3",
+    "vite": "^8.0.12"
   }
 }
