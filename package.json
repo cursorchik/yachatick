@@ -1,15 +1,13 @@
 {
-  "scripts": {
-    "dev": "vite",
-    "start": "browser-sync start --config bs-config.js"
-  },
-  "dependencies": {
-    "browser-sync": "^3.0.4"
-  },
-  "devDependencies": {
-    "@types/jquery": "^4.0.0",
-    "sass": "^1.99.0",
-    "typescript": "^6.0.3",
-    "vite": "^8.0.12"
-  }
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build"
+    },
+    "devDependencies": {
+        "axios": "^1.6.4",
+        "laravel-vite-plugin": "^1.0.0",
+        "vite": "^5.0.0"
+    }
 }
