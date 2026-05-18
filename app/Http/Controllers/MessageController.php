@@ -12,6 +12,11 @@ class MessageController extends Controller
     {
         $request->validate(['body' => 'required|string|max:1000']);
 
+		if (auth()->id() === $user->id)
+		{
+			return to_route('chat.show', $user);
+		}
+
         $message = Message::create([
             'sender_id'   => auth()->id(),
             'receiver_id' => $user->id,

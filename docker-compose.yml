@@ -69,8 +69,8 @@ services:
   node:
     image: node:20-alpine
     ports:
-#        - "3000:3000"
         - "5173:5173"
+    command: npm run dev
     volumes:
     - ./:/var/www
     working_dir: /var/www

@@ -1,16 +1,15 @@
 import { useState, PropsWithChildren, ReactNode } from 'react';
 import ApplicationLogo from '@/Components/ApplicationLogo';
 import Dropdown from '@/Components/Dropdown';
-import NavLink from '@/Components/NavLink';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
 import { Link } from '@inertiajs/react';
 import { User } from '@/types';
 
-export default function Authenticated({ user, header, children }: PropsWithChildren<{ user: User, header?: ReactNode }>) {
+export default function Authenticated({ user, header, children, className }: PropsWithChildren<{ user: User, header?: ReactNode, className?: string }>) {
     const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
 
     return (
-        <div className="min-h-screen bg-gray-100">
+        <div className={(className ? className + ' ' : '') + "min-h-screen bg-gray-100"}>
             <nav className="bg-white border-b border-gray-100">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between h-16">
@@ -50,9 +49,9 @@ export default function Authenticated({ user, header, children }: PropsWithChild
                                     </Dropdown.Trigger>
 
                                     <Dropdown.Content>
-                                        <Dropdown.Link href={route('profile.edit')}>Profile</Dropdown.Link>
-                                        <Dropdown.Link href={route('logout')} method="post" as="button">
-                                            Log Out
+                                        <Dropdown.Link href={route('profile.edit')}>Профиль</Dropdown.Link>
+                                        <Dropdown.Link className="" href={route('logout')} method="post" as="button">
+                                            Выйти
                                         </Dropdown.Link>
                                     </Dropdown.Content>
                                 </Dropdown>
@@ -105,7 +104,7 @@ export default function Authenticated({ user, header, children }: PropsWithChild
                 </div>
             </nav>
 
-            <main>{children}</main>
+            <main className="h-full overflow-auto">{children}</main>
         </div>
     );
 }

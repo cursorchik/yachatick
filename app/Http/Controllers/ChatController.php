@@ -19,9 +19,19 @@ class ChatController extends Controller
 		return Inertia::render('Chat/Index', ['users' => $users,]);
 	}
 
-	public function show(User $user)
+	public function show(int $id)
 	{
 		$currentUser = auth()->user();
+		$user = User::find($id);
+		if (!$user)
+		{
+			return redirect()->route('chat.index');
+		}
+
+		if ($currentUser->id === $user->id)
+		{
+			return redirect()->route('chat.index');
+		}
 
 		$messages = Message::where(function ($query) use ($currentUser, $user)
 		{
@@ -37,7 +47,6 @@ class ChatController extends Controller
 		})
 		->orderBy('created_at')->get();
 
-		// Получаем всех пользователей, чтобы сохранить список слева
 		$users = User::where('id', '!=', $currentUser->id)->get();
 
 		return Inertia::render('Chat/Index', [

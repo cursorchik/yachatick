@@ -29,7 +29,7 @@ export default function ChatIndex({auth, users, chatUser, messages}: ChatIndexPr
 	};
 
 	return (
-		<Authenticated user={auth.user}>
+		<Authenticated className="chat" user={auth.user}>
 			<Head title="Чаты"/>
 
 			<div className="left">
@@ -51,52 +51,55 @@ export default function ChatIndex({auth, users, chatUser, messages}: ChatIndexPr
 				</div>
 			</div>
 
-			<div className="right">
-				<div className="info">
-					{chatUser ? <h3>Чат с {chatUser.name}</h3> : <span>Выберите собеседника</span>}
-				</div>
-
-				<div className="messages">
-					{!chatUser ? (
-						<div className="placeholder">Нажмите на пользователя, чтобы начать чат</div>
-					) : messages && messages.length === 0 ? (
-						<div className="placeholder">
-							Отправьте своё первое сообщение {chatUser.name}
-						</div>
-					) : (
-						messages?.map((msg) => (
-							<div
-								key={msg.id}
-								className={msg.sender_id === auth.user.id ? 'my' : 'your'}
-							>
-								{msg.body}
-								<span>{new Date(msg.created_at).toLocaleTimeString()}</span>
-							</div>
-						))
-					)}
-				</div>
-
-				{/* Форма отправки сообщения (активна только когда выбран чат) */}
-				{chatUser && (
-					<div className="textfield">
-						<form onSubmit={sendMessage}>
-							<div>
-                                    <textarea
-										value={data.body}
-										onChange={(e) => setData('body', e.target.value)}
-										placeholder="Введите сообщение..."
-										disabled={processing}
-									/>
-							</div>
-							<div>
-								<button type="submit" disabled={processing}>
-									Отправить
-								</button>
-							</div>
-						</form>
+			{ !chatUser ? null : (
+				<div className="right">
+					<div className="info">
+						<h3>Чат с {chatUser.name}</h3>
 					</div>
-				)}
-			</div>
+
+					<div className="messages">
+						{!chatUser ? (
+							<div className="placeholder">Нажмите на пользователя, чтобы начать чат</div>
+						) : messages && messages.length === 0 ? (
+							<div className="placeholder">
+								Отправьте своё первое сообщение {chatUser.name}
+							</div>
+						) : (
+							messages?.map((msg) => (
+								<div
+									key={msg.id}
+									className={msg.sender_id === auth.user.id ? 'my' : 'your'}
+								>
+									{msg.body}
+									<span>{new Date(msg.created_at).toLocaleTimeString()}</span>
+								</div>
+							))
+						)}
+					</div>
+
+
+					{/* Форма отправки сообщения (активна только когда выбран чат) */}
+					{chatUser && (
+						<div className="textfield">
+							<form onSubmit={sendMessage}>
+								<div>
+										<textarea
+											value={data.body}
+											onChange={(e) => setData('body', e.target.value)}
+											placeholder="Введите сообщение..."
+											disabled={processing}
+										/>
+								</div>
+								<div>
+									<button type="submit" disabled={processing}>
+										Отправить
+									</button>
+								</div>
+							</form>
+						</div>
+					)}
+				</div>)
+			}
 		</Authenticated>
 	);
 }
